@@ -446,6 +446,36 @@ CUSTOM_CSS = f"""
     ::-webkit-scrollbar-thumb:hover {{
         background: var(--text-muted);
     }}
+
+    /* Premium interactive refresh */
+    .stApp {{
+        background: radial-gradient(ellipse at 12% 0%, rgba(16,185,129,.12), transparent 35%),
+          radial-gradient(ellipse at 95% 12%, rgba(59,130,246,.10), transparent 28%), var(--background);
+    }}
+    .main .block-container {{ max-width: 1540px; padding: 1.5rem 2.2rem 3rem; }}
+    section[data-testid="stSidebar"] {{ background: linear-gradient(180deg, #101d32 0%, #0b1220 100%); border-right: 1px solid rgba(148,163,184,.18); }}
+    section[data-testid="stSidebar"] .stButton > button {{ min-height: 3rem; text-align: left; padding-left: 1rem; border-radius: 12px; transition: transform .18s ease, box-shadow .18s ease; }}
+    section[data-testid="stSidebar"] .stButton > button:hover {{ transform: translateX(3px); box-shadow: 0 7px 22px rgba(16,185,129,.18); }}
+    .metric-card {{ position:relative; overflow:hidden; min-height:128px; background:linear-gradient(145deg,rgba(20,37,61,.96),rgba(13,24,42,.96)); border:1px solid rgba(100,116,139,.27); border-radius:18px; padding:1.25rem 1.35rem; box-shadow:0 8px 26px rgba(0,0,0,.12); transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease; }}
+    .metric-card:before {{ content:""; position:absolute; top:0; left:1.25rem; right:1.25rem; height:2px; background:linear-gradient(90deg,#10b981,#38bdf8,#8b5cf6); }}
+    .metric-card:hover {{ transform:translateY(-4px); border-color:rgba(52,211,153,.7); box-shadow:0 14px 30px rgba(16,185,129,.12); }}
+    .metric-label {{ font-size:.76rem; letter-spacing:.08em; }}
+    .metric-value {{ font-size:clamp(1.2rem,1.7vw,1.8rem); letter-spacing:-.04em; }}
+    .section-title {{ font-size:1.25rem; letter-spacing:-.025em; }}
+    .stButton > button {{ min-height:2.65rem; border-radius:11px; font-weight:650; box-shadow:0 3px 10px rgba(0,0,0,.08); transition:transform .18s ease,box-shadow .18s ease,filter .18s ease; }}
+    .stButton > button:hover {{ transform:translateY(-2px); filter:brightness(1.07); }}
+    div[data-testid="stVerticalBlockBorderWrapper"] {{ border-color:rgba(100,116,139,.3); border-radius:18px; background:linear-gradient(145deg,rgba(17,31,52,.78),rgba(12,22,39,.72)); box-shadow:0 10px 28px rgba(0,0,0,.10); transition:border-color .2s ease; }}
+    div[data-testid="stVerticalBlockBorderWrapper"]:hover {{ border-color:rgba(52,211,153,.4); }}
+    .stTabs [data-baseweb="tab-list"] {{ border-radius:13px; padding:6px; gap:6px; }}
+    .stTabs [data-baseweb="tab"] {{ border-radius:10px; padding:.55rem 1rem; }}
+    .js-plotly-plot {{ box-shadow:0 8px 24px rgba(0,0,0,.10); }}
+    .app-logo-icon {{ box-shadow:0 0 22px rgba(16,185,129,.22); }}
+    .attribution {{ margin-top:2.4rem; padding-top:1.25rem; }}
+    .attribution-item {{ padding:.65rem .25rem; }}
+    .avatar-placeholder {{ box-shadow:0 0 0 3px rgba(16,185,129,.10); }}
+    .stTextInput input,.stNumberInput input,.stSelectbox,.stDateInput input,textarea {{ transition:border-color .18s ease,box-shadow .18s ease; }}
+    @media (max-width:900px) {{ .main .block-container {{ padding:1rem .8rem 2rem; }} .metric-card {{ padding:1rem; }} .metric-value {{ font-size:1.35rem; }} }}
+
 </style>
 """
 
