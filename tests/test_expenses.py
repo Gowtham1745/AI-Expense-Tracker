@@ -370,10 +370,10 @@ class TestCSVExport:
         assert "Amount" in lines[0]
         assert "Category" in lines[0]
 
-        # Check data
-        assert "1250.50" in lines[1]
-        assert "Food & Dining" in lines[1]
-        assert "2000.00" in lines[2]
+        # Check data without assuming a specific transaction sort order.
+        assert "1250.50" in csv_data
+        assert "Food & Dining" in csv_data
+        assert "2000.00" in csv_data
 
     def test_export_empty_list(self, temp_db):
         """Test CSV export with empty list."""
