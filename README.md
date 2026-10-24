@@ -158,7 +158,7 @@ Edit `.env` with your settings:
 NVIDIA_API_KEY=your_api_key_here
 
 # Optional overrides
-NVIDIA_MODEL=nvidia/nemotron-3-ultra
+NVIDIA_MODEL=nvidia/nemotron-3.5-bolt-e4b
 NVIDIA_BASE_URL=https://integrate.api.nvidia.com/v1
 NVIDIA_TIMEOUT=30
 NVIDIA_MAX_TOKENS=1024
@@ -193,7 +193,7 @@ In Streamlit Community Cloud, add secrets in the dashboard:
 ```toml
 # .streamlit/secrets.toml
 NVIDIA_API_KEY = "your_api_key_here"
-NVIDIA_MODEL = "nvidia/nemotron-3-ultra"
+NVIDIA_MODEL = "nvidia/nemotron-3.5-bolt-e4b"
 NVIDIA_BASE_URL = "https://integrate.api.nvidia.com/v1"
 NVIDIA_TIMEOUT = 30
 NVIDIA_MAX_TOKENS = 1024
@@ -253,7 +253,7 @@ In the Streamlit Cloud dashboard:
 3. Add your NVIDIA API key:
    ```toml
    NVIDIA_API_KEY = "your_api_key_here"
-   NVIDIA_MODEL = "nvidia/nemotron-3-ultra"
+   NVIDIA_MODEL = "nvidia/nemotron-3.5-bolt-e4b"
    ```
 4. Save and the app will redeploy
 
