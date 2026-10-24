@@ -11,14 +11,16 @@ import pytest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+import database as database_module
+import expense_service as expense_service_module
 from config import Config
 from database import Database
 from expense_service import expense_service, ExpenseService, Expense, Budget
 
 
 @pytest.fixture
-def temp_db():
-    """Create a temporary database for testing."""
+def temp_db(monkeypatch):
+    """Create an isolated temporary database for testing."""
     with tempfile.TemporaryDirectory() as tmpdir:
         original_db_dir = Config.DATABASE_DIR
         original_db_path = Config.DATABASE_PATH
@@ -26,6 +28,8 @@ def temp_db():
         Config.DATABASE_PATH = Path(tmpdir) / "test_expenses.db"
 
         db = Database()
+        monkeypatch.setattr(database_module, "db", db)
+        monkeypatch.setattr(expense_service_module, "db", db)
         yield db
         db.close()
 
