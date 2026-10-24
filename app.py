@@ -476,6 +476,33 @@ CUSTOM_CSS = f"""
     .stTextInput input,.stNumberInput input,.stSelectbox,.stDateInput input,textarea {{ transition:border-color .18s ease,box-shadow .18s ease; }}
     @media (max-width:900px) {{ .main .block-container {{ padding:1rem .8rem 2rem; }} .metric-card {{ padding:1rem; }} .metric-value {{ font-size:1.35rem; }} }}
 
+
+    /* Rebuilt hero-first layout: clearly different from the old profile-first screen */
+    .hero-banner {
+      position:relative; overflow:hidden; min-height:245px; padding:30px 34px 52px;
+      margin:4px 0 26px; border-radius:24px;
+      border:1px solid rgba(45,212,191,.45);
+      background:radial-gradient(ellipse at 82% 35%,rgba(16,185,129,.25),transparent 31%),
+       radial-gradient(ellipse at 70% 100%,rgba(99,102,241,.22),transparent 38%),
+       linear-gradient(120deg,#071526 0%,#0b2137 54%,#101b39 100%);
+      box-shadow:0 20px 55px rgba(0,0,0,.22), inset 0 1px rgba(255,255,255,.06);
+    }
+    .hero-copy { position:relative; z-index:2; max-width:690px; }
+    .hero-eyebrow { color:#5eead4; font-size:.72rem; letter-spacing:.18em; font-weight:800; margin-bottom:14px; }
+    .hero-banner h1 { font-size:clamp(2rem,3.6vw,3.2rem); line-height:1.08; letter-spacing:-.055em; margin:0 0 13px; color:#f8fafc; font-weight:850; }
+    .hero-banner h1 span { color:#34d399; }
+    .hero-banner p { max-width:560px; color:#b9c9dc; font-size:1rem; line-height:1.65; margin:0; }
+    .hero-footer { position:absolute; left:34px; right:34px; bottom:18px; display:flex; justify-content:space-between; gap:10px; color:#8299b2; font-size:.66rem; letter-spacing:.13em; font-weight:750; }
+    .hero-art { position:absolute; right:3%; top:8px; width:34%; height:205px; opacity:.98; }
+    .hero-orbit { position:absolute; width:210px; height:150px; right:20px; top:18px; border:1px solid rgba(94,234,212,.38); border-radius:50%; transform:rotate(-25deg); box-shadow:0 0 45px rgba(16,185,129,.1); }
+    .hero-wallet { position:absolute; right:72px; top:48px; width:115px; height:88px; border-radius:18px 18px 24px 24px; background:linear-gradient(140deg,#34d399,#047857 65%,#064e3b); border:1px solid #6ee7b7; box-shadow:0 22px 38px rgba(0,0,0,.35),inset 0 2px rgba(255,255,255,.3); color:rgba(255,255,255,.6); font-size:48px; text-align:center; transform:rotate(-9deg); }
+    .hero-coin { position:absolute; display:grid; place-items:center; width:43px; height:43px; border-radius:50%; background:linear-gradient(135deg,#fde68a,#f59e0b); border:3px solid #fef3c7; color:#7c2d12; font-weight:900; box-shadow:0 8px 22px rgba(245,158,11,.3); }
+    .coin-one { top:27px; right:34px; font-size:22px; }.coin-two { top:132px; right:206px; font-size:22px; }
+    .hero-bars { position:absolute; bottom:16px; right:8px; display:flex; align-items:end; gap:7px; height:80px; }
+    .hero-bars i { display:block; width:13px; border-radius:6px 6px 2px 2px; background:linear-gradient(#a5b4fc,#6366f1); box-shadow:0 0 18px rgba(99,102,241,.25); }
+    .hero-bars i:nth-child(1){height:28px}.hero-bars i:nth-child(2){height:45px}.hero-bars i:nth-child(3){height:38px}.hero-bars i:nth-child(4){height:62px}.hero-bars i:nth-child(5){height:78px}
+    @media(max-width:850px) { .hero-art { opacity:.22; right:-6%; width:55%; } .hero-banner { padding:25px 22px 52px; } .hero-footer { left:22px; right:22px; font-size:.56rem; } }
+
 </style>
 """
 
@@ -1460,50 +1487,43 @@ def render_welcome_screen():
 
 
 def render_project_credit_header():
-    """Keep college-project credits visible at the top of every page."""
-    creator_photo = os.path.join(os.path.dirname(os.path.abspath(__file__)), "KEERTHI PROFILE PIC.jpeg")
-    developer_photo = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Gowtham Profile Professional.jpg")
+    """Render a compact branded hero instead of oversized profile cards."""
+    st.markdown("""
+    <div class="hero-banner">
+      <div class="hero-copy">
+        <div class="hero-eyebrow">PERSONAL FINANCE • SMART SPENDING • AI INSIGHTS</div>
+        <h1>Take control of your <span>money.</span></h1>
+        <p>Every expense tells a story. Track it, understand it, and make your next move smarter.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="hero-orbit"></div><div class="hero-wallet">▰</div>
+        <div class="hero-coin coin-one">₹</div><div class="hero-coin coin-two">↗</div>
+        <div class="hero-bars"><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="hero-footer"><span>✦ KEERTHI — AI EXPENSE TRACKER</span><span>COLLEGE PROJECT</span></div>
+    </div>
+    """, unsafe_allow_html=True)
 
-    st.markdown(
-        """
-        <div style="padding: 0.45rem 0 0.2rem 0;">
-            <div style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase;
-                        color:#34D399; font-weight:700;">College Project · Project Credits</div>
-            <h1 style="margin:0.2rem 0 0.6rem 0; font-size:1.65rem;">
-                Keerthi — AI Personal Expense Tracker
-            </h1>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    creator_col, developer_col = st.columns(2, gap="medium")
-    with creator_col:
-        with st.container(border=True):
+    with st.expander("Project credits · Creator & Developer", expanded=False):
+        creator_photo = os.path.join(os.path.dirname(os.path.abspath(__file__)), "KEERTHI PROFILE PIC.jpeg")
+        developer_photo = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Gowtham Profile Professional.jpg")
+        creator_col, developer_col = st.columns(2, gap="medium")
+        with creator_col:
             photo_col, details_col = st.columns([1, 3], vertical_alignment="center")
             with photo_col:
                 if os.path.isfile(creator_photo):
-                    st.image(creator_photo, width=84)
-                else:
-                    st.markdown("## 👩🏻")
+                    st.image(creator_photo, width=64)
             with details_col:
-                st.markdown("**CREATOR**")
-                st.markdown("### Keerthi")
-                st.markdown("📧 keerthanaskeerthi97@gmail.com")
-    with developer_col:
-        with st.container(border=True):
+                st.markdown("**CREATOR · Keerthi**")
+                st.caption("keerthanaskeerthi97@gmail.com")
+        with developer_col:
             photo_col, details_col = st.columns([1, 3], vertical_alignment="center")
             with photo_col:
                 if os.path.isfile(developer_photo):
-                    st.image(developer_photo, width=84)
-                else:
-                    st.markdown("## 👨🏻‍💻")
+                    st.image(developer_photo, width=64)
             with details_col:
-                st.markdown("**DEVELOPER**")
-                st.markdown("### Gowtham A")
-                st.markdown("📧 gowthamgo1745@gmail.com")
-
-    st.divider()
+                st.markdown("**DEVELOPER · Gowtham A**")
+                st.caption("gowthamgo1745@gmail.com")
 
 
 def main():
