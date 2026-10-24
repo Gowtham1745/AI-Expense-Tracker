@@ -18,7 +18,7 @@ class Config:
 
     # NVIDIA Nemotron API
     NVIDIA_API_KEY: Optional[str] = None
-    NVIDIA_MODEL: str = os.getenv("NVIDIA_MODEL", "nvidia/nemotron-3-ultra")
+    NVIDIA_MODEL: str = os.getenv("NVIDIA_MODEL", "nvidia/nemotron-3.5-bolt-e4b")
     NVIDIA_BASE_URL: str = os.getenv(
         "NVIDIA_BASE_URL",
         "https://integrate.api.nvidia.com/v1"
