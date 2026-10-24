@@ -16,17 +16,11 @@ from config import Config
 class Database:
     """SQLite database manager with connection pooling and transaction support."""
 
-    _instance: Optional["Database"] = None
-    _connection: Optional[sqlite3.Connection] = None
-
-    def __new__(cls) -> "Database":
-        if cls._instance is None:
-            cls._instance = super().__new__(cls)
-        return cls._instance
-
     def __init__(self) -> None:
-        if self._connection is None:
-            self._initialize()
+        # Each Database instance owns its own connection. This makes temporary
+        # test databases isolated and avoids sharing the app connection by accident.
+        self._connection: Optional[sqlite3.Connection] = None
+        self._initialize()
 
     def _initialize(self) -> None:
         """Initialize database connection and create tables."""
