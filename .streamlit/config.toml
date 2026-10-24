@@ -1,9 +1,9 @@
 # Streamlit Configuration for Keerthi AI Expense Tracker
 
 [server]
-# Enable CORS for development
-enableCORS = false
-enableXsrfProtection = false
+# Keep Streamlit's browser protections enabled in local and cloud environments.
+enableCORS = true
+enableXsrfProtection = true
 # Port (Cloud ignores this, uses 8501)
 port = 8501
 # Allow all origins for development
