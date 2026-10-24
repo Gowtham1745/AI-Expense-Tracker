@@ -181,7 +181,7 @@ class TestChartCreation:
 
     def test_create_category_monthly_trend(self, temp_db):
         """Test category trend chart."""
-        fig = Analytics.create_category_monthly_trend("Rent", months=6)
+        fig = Analytics.create_category_monthly_trend("Rent", months=6, reference_date="2025-03-15")
         assert fig is not None
         assert len(fig.data) == 1
         assert fig.data[0].type == "scatter"
