@@ -412,6 +412,14 @@ class Analytics:
             months_labels = [row["month"] for row in trend_data]
             totals = [float(row["total"]) for row in trend_data]
             color = Analytics.CATEGORY_COLORS.get(category, Analytics.COLORS["primary"])
+            # Plotly expects rgba() or 6-digit hex; an 8-digit hex suffix is not
+            # accepted by every supported Plotly version.
+            hex_color = color.lstrip("#")
+            if len(hex_color) == 6 and all(ch in "0123456789abcdefABCDEF" for ch in hex_color):
+                red, green, blue = (int(hex_color[i:i + 2], 16) for i in (0, 2, 4))
+                fill_color = f"rgba({red}, {green}, {blue}, 0.12)"
+            else:
+                fill_color = color
 
             fig.add_trace(go.Scatter(
                 x=months_labels,
@@ -421,7 +429,7 @@ class Analytics:
                 line={"color": color, "width": 3, "shape": "spline"},
                 marker={"size": 8, "color": color},
                 fill="tozeroy",
-                fillcolor=f"{color}20",
+                fillcolor=fill_color,
                 hovertemplate="%{x}<br>%{y:,.2f}<extra></extra>"
             ))
 
