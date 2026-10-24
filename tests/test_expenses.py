@@ -312,7 +312,7 @@ class TestExpenseFiltering:
         """Test getting filtered expenses."""
         # Add test data
         expense_service.add_expense("2025-01-15", 1000, "Food & Dining", "Lunch", "Cash")
-        expense_service.add_expense("2025-01-20", 2000, "Shopping", "Clothes", "Card")
+        expense_service.add_expense("2025-01-20", 2000, "Shopping", "Clothes", "Debit Card")
         expense_service.add_expense("2025-02-01", 1500, "Food & Dining", "Dinner", "UPI")
 
         # Filter by date
@@ -342,7 +342,7 @@ class TestExpenseFiltering:
     def test_count_expenses(self, temp_db):
         """Test counting expenses."""
         expense_service.add_expense("2025-01-15", 1000, "Food & Dining", "Lunch", "Cash")
-        expense_service.add_expense("2025-01-20", 2000, "Shopping", "Clothes", "Card")
+        expense_service.add_expense("2025-01-20", 2000, "Shopping", "Clothes", "Debit Card")
 
         count = expense_service.count_expenses()
         assert count == 2
@@ -357,7 +357,7 @@ class TestCSVExport:
     def test_export_to_csv(self, temp_db):
         """Test CSV export."""
         expense_service.add_expense("2025-01-15", 1250.50, "Food & Dining", "Lunch", "UPI", "Restaurant", "Team")
-        expense_service.add_expense("2025-01-20", 2000, "Shopping", "Clothes", "Card")
+        expense_service.add_expense("2025-01-20", 2000, "Shopping", "Clothes", "Debit Card")
 
         expenses = expense_service.get_expenses()
         csv_data = expense_service.export_to_csv(expenses)
