@@ -142,7 +142,6 @@ class Database:
         if self._connection:
             self._connection.close()
             self._connection = None
-            Database._instance = None
 
     # Expense operations
     def add_expense(
