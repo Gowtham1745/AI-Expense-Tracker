@@ -1,0 +1,37 @@
+# Streamlit Configuration for Keerthi AI Expense Tracker
+
+[server]
+# Enable CORS for development
+enableCORS = false
+enableXsrfProtection = false
+# Port (Cloud ignores this, uses 8501)
+port = 8501
+# Allow all origins for development
+headless = true
+
+[browser]
+# Don't auto-open browser in server environments
+gatherUsageStats = false
+serverAddress = "localhost"
+
+[theme]
+# Dark theme with emerald accent
+primaryColor = "#10B981"
+backgroundColor = "#0F172A"
+secondaryBackgroundColor = "#1E293B"
+textColor = "#F1F5F9"
+font = "sans serif"
+
+[runner]
+# Install tracer for better error messages
+installTracer = false
+magicEnabled = true
+
+[logger]
+level = "info"
+messageFormat = "%(asctime)s %(levelname)s %(name)s: %(message)s"
+
+[client]
+# Enable toolbar in development
+toolbarMode = "minimal"
+showErrorDetails = true

@@ -1,0 +1,73 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+virtualenv/
+
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+.streamlit/secrets.toml
+
+# Database files (contain personal financial data)
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+*.sqlite-wal
+*.sqlite-shm
+keerthi_expense_tracker/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Test and coverage
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Logs
+*.log
+logs/
+
+# OS files
+ehthumbs.db
+Desktop.ini
+
+# Streamlit
+.streamlit/*.toml
+!.streamlit/config.toml
+
+# Local data directory
+.keerthi_expense_tracker/
+
+# Assets (user photos - keep placeholder README)
+assets/*.jpg
+assets/*.jpeg
+assets/*.png
+!assets/README.md
+
+# Jupyter
+.ipynb_checkpoints/
