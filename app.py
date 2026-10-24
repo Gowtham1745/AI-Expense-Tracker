@@ -1429,9 +1429,59 @@ def render_welcome_screen():
                     st.error(error)
 
 
+def render_project_credit_header():
+    """Keep college-project credits visible at the top of every page."""
+    creator_photo = os.path.join(os.path.dirname(os.path.abspath(__file__)), "KEERTHI PROFILE PIC.jpeg")
+    developer_photo = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Gowtham Profile Professional.jpg")
+
+    st.markdown(
+        """
+        <div style="padding: 0.45rem 0 0.2rem 0;">
+            <div style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase;
+                        color:#34D399; font-weight:700;">College Project · Project Credits</div>
+            <h1 style="margin:0.2rem 0 0.6rem 0; font-size:1.65rem;">
+                Keerthi — AI Personal Expense Tracker
+            </h1>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    creator_col, developer_col = st.columns(2, gap="medium")
+    with creator_col:
+        with st.container(border=True):
+            photo_col, details_col = st.columns([1, 3], vertical_alignment="center")
+            with photo_col:
+                if os.path.isfile(creator_photo):
+                    st.image(creator_photo, width=84)
+                else:
+                    st.markdown("## 👩🏻")
+            with details_col:
+                st.markdown("**CREATOR**")
+                st.markdown("### Keerthi")
+                st.markdown("📧 keerthanaskeerthi97@gmail.com")
+    with developer_col:
+        with st.container(border=True):
+            photo_col, details_col = st.columns([1, 3], vertical_alignment="center")
+            with photo_col:
+                if os.path.isfile(developer_photo):
+                    st.image(developer_photo, width=84)
+                else:
+                    st.markdown("## 👨🏻‍💻")
+            with details_col:
+                st.markdown("**DEVELOPER**")
+                st.markdown("### Gowtham A")
+                st.markdown("📧 gowthamgo1745@gmail.com")
+
+    st.divider()
+
+
 def main():
     """Main application entry point."""
     init_session_state()
+
+    # Show creator and developer credits above the application content.
+    render_project_credit_header()
 
     # Render sidebar
     render_sidebar()
