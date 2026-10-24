@@ -5,7 +5,7 @@ Tests for the expense service module.
 import os
 import sys
 import tempfile
-from datetime import date
+from datetime import date, timedelta
 
 import pytest
 
